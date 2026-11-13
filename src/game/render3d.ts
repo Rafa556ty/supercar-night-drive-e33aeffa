@@ -1077,9 +1077,7 @@ export class Scene3D {
       const size = (b: THREE.Box3) => Math.min(0.7, Math.max(0.28, (b.max.x - b.min.x) * 1.4));
       for (const b of lampBoxes.head) {
         const c = b.getCenter(new THREE.Vector3());
-        // SVJ lamp geometry is only the inner LED tip; its lens extends outward from there.
-        if (this.playerKey === "svj") halo(c.x + Math.sign(c.x) * 0.1, c.y, b.min.z - 0.03, "head", 0.55);
-        else halo(c.x, c.y, b.min.z - 0.03, "head", size(b));
+        halo(c.x, c.y, b.min.z - 0.03, "head", size(b));
       }
       for (const b of lampBoxes.tail) {
         const c = b.getCenter(new THREE.Vector3());

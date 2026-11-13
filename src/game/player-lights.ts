@@ -20,7 +20,7 @@ export const PLAYER_LAMPS: Partial<Record<PlayerCar, LampSpec>> = {
   huayra: { lamp: /^pag_lights$|^pag_runninglight$/, tail: /^pag_taillight_L$/, brake: /^pag_brakelight$/ },
   demon: { lamp: /^lightglass$/, tail: /^redglass$/ },
   "chiron-ss300": { lamp: /^CSR2_Light$|^headlight$|^Park_light$/, tail: /^GlassRed$|^brake_park_light$/, brake: /^brake_light$/ },
-  svj: { lamp: /^Puncheffnuminnernaddlight/, tail: /$^/ },
+  svj: { lamp: /^Puncheffnuminnernaddlight|^svj_headlens$/, tail: /^svj_taillens$/ },
 };
 
 export type LampRole = "lamp" | "tail" | "brake";

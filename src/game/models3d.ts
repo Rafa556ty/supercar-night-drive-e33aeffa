@@ -7,6 +7,7 @@ import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 import { normalizeCar } from "./normalize-car";
 import { isolateActiveWing } from "./active-wing";
 import { blackOutBmwWindow } from "./bmw-windows";
+import { fixSvj } from "./svj-fix";
 export { normalizeCar } from "./normalize-car";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 
@@ -703,8 +704,10 @@ export function loadCar(key: ModelKey): Promise<THREE.Group> {
           );
         // Revuelto wheels (tyre, rim, rotor, logo) stay unmerged so they can
         // spin; the caliper is bolted to the upright and does not turn.
+        const normalized = normalizeCar(scene, spec);
+        if (key === "svj") fixSvj(normalized);
         const result = batchCar(
-          normalizeCar(scene, spec),
+          normalized,
           key === "revuelto"
             ? (o) => o.name.startsWith("Wheel_") && !o.name.includes("Caliper")
             : NEW_CAR_KEYS.has(key)
